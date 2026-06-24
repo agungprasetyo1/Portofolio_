@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hani Portfolio</title>
+  <style>
+    /* ===== RESET ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #050705;
+      color: white;
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+
+    /* ===== NAVBAR ===== */
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      padding: 25px 60px;
+      z-index: 10;
+    }
+    .navbar nav a {
+      color: #aaa;
+      margin-left: 20px;
+      text-decoration: none;
+    }
+    .navbar nav a:hover {
+      color: #7CFF6B;
+      text-shadow: 0 0 10px #7CFF6B;
+    }
+
+    /* ===== HOME ===== */
+    .home {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 60px;
+    }
+    .home-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1200px;
+      width: 100%;
+      gap: 60px;
+    }
+    .home-text h1 {
+      font-size: 70px;
+      margin: 20px 0;
+      color: #7CFF6B;
+    }
+    .role {
+      color: #7CFF6B;
+      letter-spacing: 6px;
+      font-size: 12px;
+    }
+    .desc {
+      color: #aaa;
+      max-width: 450px;
+    }
+
+    /* 🔥 HOME FOTO — DIPERKECIL */
+    .home-image img {
+      width: 320px;          /* ← turun dari 420px */
+      height: auto;
+      display: block;
+      border-radius: 20px;
+      filter: drop-shadow(0 20px 35px rgba(0,0,0,0.75));
+      transition: 0.3s ease;
+      background: transparent;
+      border: none;
+    }
+    .home-image img:hover {
+      transform: scale(1.05);
+    }
+
+    /* ===== ABOUT ===== */
+    .about {
+      padding: 120px 60px;
+      position: relative;
+      overflow: hidden;
+    }
+    .about::before {
+      content: "";
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      background: #7CFF6B;
+      filter: blur(140px);
+      opacity: 0.15;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    .about-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 80px;
+      max-width: 1200px;
+      margin: auto;
+      position: relative;
+    }
+    .about-text {
+      flex: 1;
+      padding-left: 20px;
+      border-left: 3px solid #7CFF6B;
+    }
+    .tag {
+      color: #7CFF6B;
+      letter-spacing: 4px;
+      font-size: 12px;
+    }
+    .about-text h2 {
+      font-size: 48px;
+      margin: 10px 0;
+    }
+    .about-text p {
+      color: #aaa;
+      line-height: 1.8;
+      margin-bottom: 12px;
+    }
+
+    .about-image {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .about-image::before {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      max-width: 280px;       /* ← ikut ukuran foto */
+      max-height: 340px;
+      border: 2px solid #7CFF6B;
+      border-radius: 20px;
+      transform: translate(8px, 8px);
+      z-index: 0;
+      box-shadow: 0 0 20px rgba(124,255,107,0.25);
+    }
+
+    /* 🔥 ABOUT FOTO — DIPERKECIL */
+    .about-image img {
+      width: 280px;           /* ← turun dari 320px */
+      height: auto;
+      display: block;
+      border-radius: 20px;
+      position: relative;
+      z-index: 1;
+      border: none;
+      filter: drop-shadow(0 20px 35px rgba(0,0,0,0.7));
+      transition: 0.3s ease;
+    }
+    .about-image img:hover {
+      transform: scale(1.05);
+    }
+
+    /* ===== SKILLS ===== */
+    .section {
+      padding: 120px 60px;
+      text-align: center;
+    }
+    .skills {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      max-width: 900px;
+      margin: auto;
+    }
+    .skills span {
+      padding: 10px 18px;
+      border-radius: 25px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid #222;
+      color: #ccc;
+      font-size: 14px;
+      transition: 0.3s ease;
+      cursor: default;
+    }
+    .skills span:hover {
+      color: #7CFF6B;
+      border-color: #7CFF6B;
+      transform: translateY(-5px);
+      box-shadow: 0 0 15px rgba(124,255,107,0.25), 0 0 30px rgba(124,255,107,0.1);
+    }
+
+    /* ===== PROJECTS ===== */
+    .grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+      margin-top: 30px;
+    }
+    .card {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid #222;
+      border-radius: 16px;
+      padding: 20px 18px 25px;
+      max-width: 260px;
+      transition: 0.3s ease;
+      text-align: center;
+    }
+    .card:hover {
+      border-color: #7CFF6B;
+      transform: translateY(-6px);
+      box-shadow: 0 0 25px rgba(124,255,107,0.12);
+    }
+
+    /* 🔥 CARD FOTO — DIPERKECIL & PROPORSIONAL */
+    .card img {
+      width: 100%;
+      max-width: 200px;        /* ← batas lebar */
+      height: 160px;           /* ← tinggi tetap */
+      object-fit: cover;
+      border-radius: 10px;
+      display: block;
+      margin: 0 auto 12px;
+      transition: 0.3s ease;
+    }
+    .card:hover img {
+      transform: scale(1.04);
+    }
+
+    .card h3 {
+      color: #fff;
+      font-size: 17px;
+      margin: 10px 0 6px;
+    }
+    .card p {
+      color: #aaa;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    /* khusus card feed (3 gambar inline) */
+    .card .feed-row {
+      display: flex;
+      gap: 6px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .card .feed-row img {
+      width: 60px;            /* ← kecil biar 3 sejajar */
+      height: 60px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    .space {
+      height: 60px;
+    }
+
+    /* ===== CONTACT ===== */
+    #contact {
+      padding: 120px 60px;
+      text-align: center;
+    }
+    #contact h2 {
+      color: #7CFF6B;
+      margin-bottom: 40px;
+      letter-spacing: 2px;
+    }
+    .contact-box {
+      max-width: 500px;
+      margin: auto;
+      padding: 25px;
+      border: 1px solid #222;
+      border-radius: 15px;
+      background: rgba(255,255,255,0.02);
+      text-align: left;
+    }
+    .contact-box p {
+      color: #aaa;
+      margin: 12px 0;
+      font-size: 15px;
+    }
+    .contact-box a {
+      color: #7CFF6B;
+      text-decoration: none;
+    }
+    .contact-box a:hover {
+      text-shadow: 0 0 10px #7CFF6B;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      .home-container,
+      .about-container {
+        flex-direction: column;
+        text-align: center;
+        gap: 30px;
+      }
+      .home-image img {
+        width: 240px;
+      }
+      .about-image img {
+        width: 220px;
+      }
+      .about-image::before {
+        max-width: 220px;
+        max-height: 270px;
+      }
+      .home-text h1 {
+        font-size: 40px;
+      }
+      .about-text {
+        border-left: none;
+        padding-left: 0;
+      }
+      .navbar {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        padding: 15px 20px;
+      }
+      .navbar nav a {
+        margin: 0 10px;
+        font-size: 13px;
+      }
+      .section {
+        padding: 80px 20px;
+      }
+      .card {
+        max-width: 100%;
+      }
+      .card img {
+        max-width: 180px;
+        height: 140px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===== NAVBAR ===== -->
+<header class="navbar">
+  <h3>HANI</h3>
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<!-- ===== HOME ===== -->
+<section id="home" class="home">
+  <div class="home-container">
+    <div class="home-text">
+      <p class="role">COMPUTER ENGINEERING STUDENT</p>
+      <h1>HANI RAHMADANI</h1>
+      <p class="desc">Web Development • IoT • AI • Cyber Security • Networking</p>
+      <a href="#about" class="btn" style="display:inline-block;margin-top:20px;padding:12px 28px;border:1px solid #7CFF6B;border-radius:30px;color:#7CFF6B;text-decoration:none;transition:0.3s;">Explore Portfolio</a>
+    </div>
+    <div class="home-image">
+      <img src="img/about (1).jpeg" alt="profile">
+    </div>
+  </div>
+</section>
+
+<!-- ===== ABOUT ===== -->
+<section id="about" class="about">
+  <div class="about-container">
+    <div class="about-image">
+      <img src="img/home.jpeg" alt="profile">
+    </div>
+    <div class="about-text">
+      <span class="tag">about me</span>
+      <h2>Who I Am</h2>
+      <p>Mahasiswa Teknik Komputer yang fokus pada Web Development, IoT, AI, dan Cyber Security.</p>
+      <p>Saya tertarik membangun sistem digital yang modern, efisien, dan fungsional. Saat ini saya terus mengembangkan skill di bidang frontend dan teknologi berbasis sistem cerdas.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SKILLS ===== -->
+<section id="skills" class="section">
+  <h2 style="color:#7CFF6B;margin-bottom:30px;">Skills</h2>
+  <div class="skills">
+    <span>HTML</span>
+    <span>CSS</span>
+    <span>Web Development</span>
+    <span>IoT Development</span>
+    <span>Arduino IDE</span>
+    <span>Proteus Design Suite</span>
+    <span>KiCad PCB Design</span>
+    <span>Dev-C++</span>
+    <span>Canva</span>
+  </div>
+</section>
+
+<!-- ===== PROJECTS ===== -->
+<section id="projects" class="section">
+  <h2 style="color:#7CFF6B;margin-bottom:30px;">Projects</h2>
+
+  <!-- IOT / TECH -->
+  <div class="grid">
+    <div class="card">
+      <img src="img/kucing.jpeg" alt="pakan kucing">
+      <h3>Pakan Kucing Otomatis</h3>
+      <p>Sistem Internet of Things (IoT) berbasis mikrokontroler yang dirancang untuk memberikan pakan secara otomatis berdasarkan jadwal atau kondisi tertentu, sehingga meningkatkan efisiensi dan kenyamanan dalam perawatan hewan.</p>
+    </div>
+    <div class="card">
+      <img src="img/pel an.jpeg" alt="robot pel">
+      <h3>Robot Pel Lantai</h3>
+      <p>Robot pembersih lantai otomatis berbasis sistem kontrol mikrokontroler yang mampu melakukan proses pembersihan secara mandiri untuk meningkatkan efisiensi pekerjaan rumah tangga.</p>
+    </div>
+    <div class="card">
+      <img src="img/kichad.jpeg" alt="kicad">
+      <h3>Desain KiCad PCB</h3>
+      <p>Perancangan dan simulasi rangkaian elektronik menggunakan KiCad untuk kebutuhan sistem embedded, dengan fokus pada efisiensi jalur dan kestabilan sistem.</p>
+    </div>
+  </div>
+
+  <div class="space"></div>
+
+  <!-- CANVA DESIGNS -->
+  <h2 style="color:#7CFF6B;margin-bottom:30px;">Canva Designs</h2>
+  <div class="grid">
+    <div class="card">
+      <img src="img/poster idul fitri.jpeg" alt="poster">
+      <h3>Poster Design</h3>
+      <p>Desain visual menggunakan Canva untuk kebutuhan branding dan komunikasi digital, dengan fokus pada estetika modern dan keterbacaan informasi.</p>
+    </div>
+    <div class="card">
+      <div class="feed-row">
+        <img src="img/feed 1.jpeg" alt="feed 1">
+        <img src="img/feed 2.jpeg" alt="feed 2">
+        <img src="img/feed 3.jpeg" alt="feed 3">
+      </div>
+      <h3>Social Media Design</h3>
+      <p>Perancangan konten visual media sosial berbasis desain grafis modern untuk meningkatkan daya tarik dan konsistensi branding digital.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONTACT ===== -->
+<section id="contact" class="section">
+  <h2>Contact</h2>
+  <div class="contact-box">
+    <p>📱 Instagram: <a href="#">Hunnysii_</a></p>
+    <p>💻 GitHub: <a href="#">hanirahmadani47-ship-it</a></p>
+    <p>💼 LinkedIn: <a href="#">Hani Rahmadani</a></p>
+    <p>📧 Email: <a href="#">hanirahmadani47@gmail.com</a></p>
+  </div>
+</section>
+
+</body>
+</html>
